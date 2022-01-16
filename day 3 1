@@ -1,0 +1,47 @@
+const rapport = `100100110110
+101110110110
+010100010100
+011001110000
+000000000111
+000010110001`;
+
+
+
+/*
+* 1: Transformer en tableau
+* 2: Compter le nombre de 0 et de 1
+* 3: Pusher dans gamma & epsilon le plus grand nbr et plus petit
+* 4: Transformer en Number
+* 5: Convertir en decimal et les multiplier
+*/
+
+// 1
+const rapportArr = rapport.split('\n');
+
+
+// 2
+function compteZeroEtUn(arr){
+  let gamma = [];
+  let epsilon = [];
+  for (let i = 0; i < 12; i++) {
+    let nbr0 = arr.filter( nbr => nbr[i] == '0' );   
+    let nbr1 = arr.filter( nbr => nbr[i] == '1' );
+    // 3
+    nbr0.length > nbr1.length ? gamma.push(0) : gamma.push(1);
+    nbr0.length < nbr1.length ? epsilon.push(0) : epsilon.push(1);
+  }
+  // 4
+  gamma = Number(gamma.join(''));
+  epsilon = Number(epsilon.join(''));
+  convertion(gamma, epsilon);
+};
+
+// 5
+function convertion(arrGamma, arrEpsilon ) {
+  let gammaNbr = parseInt(arrGamma,2);
+  let epsilonNbr = parseInt(arrEpsilon,2);
+  console.log(gammaNbr * epsilonNbr);
+}
+
+
+compteZeroEtUn(rapportArr);
